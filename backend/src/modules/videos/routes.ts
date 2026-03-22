@@ -1,9 +1,9 @@
 import { Router } from "express";
+import { getVideoController } from "./controller";
+import { optionalAuth } from "../../middleware/auth";
 
 const router = Router();
 
-router.get("/:id", (req, res) => {
-  res.send("Get video details");
-});
+router.get("/:id", optionalAuth, getVideoController);
 
 export default router;

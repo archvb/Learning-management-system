@@ -1,13 +1,15 @@
 import { Router } from "express";
+import {
+  getSubjectsController,
+  getSubjectBySlugController,
+} from "./controller";
+import { getSubjectContentController } from "../sections/controller";
+import { optionalAuth } from "../../middleware/auth";
 
 const router = Router();
 
-router.get("/", (req, res) => {
-  res.send("Get all subjects");
-});
-
-router.get("/:slug", (req, res) => {
-  res.send("Get subject by slug");
-});
+router.get("/", getSubjectsController);
+router.get("/:slug", getSubjectBySlugController);
+router.get("/:slug/content", optionalAuth, getSubjectContentController);
 
 export default router;
